@@ -3,6 +3,14 @@ import json
 from dataclasses import dataclass 
 from typing import List
 
+class KwargsKey:
+	MaxLength = "max_length"
+	Null = "null"
+	Blank = "blank"
+	AutoNow = "auto_now"
+	AutoNowAdd = "auto_now_add"
+	Unique = "unique"
+
 @dataclass
 class FieldKwargs:
 	key_name: str
@@ -14,12 +22,12 @@ def validate_bool(value):
 def validate_int(value):
 	return isinstance(value, int)
 
-max_length = FieldKwargs("max_length", [validate_int])
-null = FieldKwargs("null", [validate_bool])
-blank = FieldKwargs("blank", [validate_bool])
-unique = FieldKwargs("unique", [validate_bool])
-auto_now = FieldKwargs("auto_now", [validate_bool])
-auto_now_add = FieldKwargs("auto_now_add", [validate_bool])
+max_length = FieldKwargs(KwargsKey.MaxLength, [validate_int])
+null = FieldKwargs(KwargsKey.Null, [validate_bool])
+blank = FieldKwargs(KwargsKey.Blank, [validate_bool])
+unique = FieldKwargs(KwargsKey.Unique, [validate_bool])
+auto_now = FieldKwargs(KwargsKey.AutoNow, [validate_bool])
+auto_now_add = FieldKwargs(KwargsKey.AutoNowAdd, [validate_bool])
 
 @dataclass
 class Field:
